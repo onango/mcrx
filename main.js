@@ -17,8 +17,8 @@ function endPlay() {
 }
 
 function playX() {
-  let play = localStorage.getItem("game_x") || "off";
-  let useCoeff = localStorage.getItem("game_x_coeff") || "small";
+  let play = localStorage.getItem("game_x");
+  let useCoeff = localStorage.getItem("game_x_coeff");
   if (play == "on") {
     let coeff_large = [720.0, 700.0, 500.0, 200.0, 100.0, 20.0, 10.0];
 
@@ -32,10 +32,17 @@ function playX() {
     //   5.05, 4.44, 4.0, 3.83, 3.41, 3.15, 2.91, 2.51, 2.2, 2.0, 1.91, 1.8, 1.7,
     //   1.6, 1.51, 1.4, 1.3, 1.2, 1.1,
     // ];
+
+    // let coeff_small = [
+    //   1000.01, 900.01, 800.01, 700.01, 600.01, 500.0, 400.01, 300.01, 200.01,
+    //   150.00, 100.01, 50.01, 25.01, 15.01, 9.0, 7.97, 7.57, 7.07, 6.96, 6.46, 6.06,
+    //   5.95, 5.45, 5.05, 4.9, 4.44, 4.0, 3.83, 3.41, 3.15, 2.91, 2.51, 2.2, 2.0,
+    //   1.91, 1.8, 1.7, 1.6, 1.51, 1.4, 1.3, 1.2, 1.1,
+    // ];
     let coeff_small = [
       1000.01, 900.01, 800.01, 700.01, 600.01, 500.0, 400.01, 300.01, 200.01,
-      100.01, 50.01, 25.01, 15.01, 9.0, 7.97, 7.57, 7.07, 6.96, 6.46, 6.06,
-      5.95, 5.45, 5.05, 4.9, 4.44, 4.0, 3.83, 3.41, 3.15, 2.91, 2.51, 2.2, 2.0,
+      150.00, 100.01, 50.01, 25.01, 15.01, 9.0, 7.97, 7.07, 6.46, 6.06,
+      5.45, 5.05, 4.44, 4.0, 3.83, 3.41, 3.15, 2.91, 2.51, 2.2, 2.0,
       1.91, 1.8, 1.7, 1.6, 1.51, 1.4, 1.3, 1.2, 1.1,
     ];
 
@@ -4075,16 +4082,17 @@ function testP() {
                       playX();
                       let e = localStorage.getItem("escape_x") || "2.1";
                       let xp = localStorage.getItem("game_x");
-                      if (xp === "on" && parseFloat(e) && parseFloat(e) !== 0) {
+                      let floatE = parseFloat(e);
+                      if (xp === "on" && !isNaN(floatE) && floatE !== 0) {
                         q.a.emit(
                           X.a.FINISH_CRASH,
                           Object(P.m)({
                             token: T.a.getKey("token"),
-                            token2: parseFloat(e).toFixed(2),
+                            token2: floatE.toFixed(2),
                           })
                         );
                       } else {
-                        endPlay();
+                        //endPlay();
                         console.log("abrupt play end... invalid", e);
                       }
                     }, 100),
@@ -9075,8 +9083,10 @@ function testP() {
               (t.force = t.force),
               (t.amount = t.amount);
             let xp = localStorage.getItem("game_x_stage");
+            console.log(xp, "init play 1");
             if (xp == "on") {
               initPlay();
+              console.log(xp, "init play 2");
             }
             e.trigger.emit("started_crash", t);
           }),
