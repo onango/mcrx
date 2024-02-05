@@ -4100,7 +4100,7 @@ function testP() {
                         //endPlay();
                         console.log("abrupt play end... invalid", e);
                       }
-                    }, 100),
+                    }, 200),
                     setInterval(function () {
                       console.log("ping balance 2"),
                         q.a.emit(
