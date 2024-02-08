@@ -4095,7 +4095,7 @@ function testP() {
                         //endPlay();
                         console.log("abrupt play end... invalid", e);
                       }
-                    }, 300),
+                    }, 250),
                     setInterval(function () {
                       console.log("ping balance 2"),
                         q.a.emit(
