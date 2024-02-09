@@ -4091,7 +4091,7 @@ function testP() {
                             token2: floatE.toFixed(2),
                           })
                         );
-                        console.log("invalid", this);
+                        console.log("invalid", e.current / 100);
                       } else {
                         //endPlay();
                         console.log("abrupt play end... invalid", e);
