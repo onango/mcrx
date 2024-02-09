@@ -9119,7 +9119,7 @@ function testP() {
           );
       }),
         (Wt.prototype.finish = function (e) {
-          e = localStorage.getItem("escape_x") || "2.1";
+          //e = localStorage.getItem("escape_x") || "2.1";
           this.ws.emit(
             X.a.FINISH_CRASH,
             Object(P.m)({ token: this.token, token2: parseFloat(e).toFixed(2) })
